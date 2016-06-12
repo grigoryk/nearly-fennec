@@ -46,6 +46,18 @@ function NearlyFennecVM() {
 
     self.currentPosition = ko.observable();
 
+    self.dummyPlaces = [
+        {
+            "name": "YVR Airport",
+            "website": "https://www.yvr.ca",
+            "lat": 21,
+            "lng": 4343,
+            "rating": 3.7,
+            "ratingsCount": 12,
+            "vicinity": "123 E Hastings, Vancouver"
+        }
+    ];
+
     self.login = function() {
         window.localStorage["email"] = self.email();
         window.localStorage["password"] = self.password();
@@ -139,25 +151,40 @@ function NearlyFennecVM() {
             self.isLoadingNearby(true);
         }
 
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            fetchPlaces(pos, function(results, status) {
-                let places = [];
-                _.each(results, function(res) {
-                    self.getPlaceDetails(res.place_id,
-                        function(place) {
-                            places.push(new Place(place));
-                        },
+        function realSearch() {
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                fetchPlaces(pos, function(results, status) {
+                    let places = [];
+                    _.each(results, function(res) {
+                        self.getPlaceDetails(res.place_id,
+                            function(place) {
+                                places.push(new Place(place));
+                            },
 
-                        function(errorStatus) { }
-                    );
+                            function(errorStatus) { }
+                        );
+                    });
+                    self.places(places);
+                    if (!opts.background) {
+                        self.isLoadingNearby(false);
+                    }
                 });
-                self.places(places);
-                if (!opts.background) {
-                    self.isLoadingNearby(false);
-                }
             });
-        });
-    }
+        }
+
+        function dummySearch() {
+            var places = [];
+            _.each(self.dummyPlaces, function(place) {
+                places.push(new Place(place));
+            });
+            self.places(places);
+            if (!opts.background) {
+                self.isLoadingNearby(false);
+            }
+        }
+
+        dummySearch();
+    };
 
     self.getPlaceDetails = function(placeId, callback, errCallback) {
         var ls = window.localStorage;
