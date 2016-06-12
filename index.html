@@ -70,6 +70,25 @@
         </div>
 
         <div class="content" data-bind="ifnot: isLoading()">
+            <!--FAKE cards: edit here! -->
+            <div class="cards">
+                <div class="card tile">
+                    <div class="name">
+                        <a target="_blank">YVR Airport</a>
+                    </div>
+                    <div class="address">123 Airport Pl</div>
+                    <div class="photo">
+                        <img src="yvr.jpg">
+                    </div>
+                    <div class="items">
+                        <div class="item">
+                            <strong>5m ago</strong>
+                            <a target="_blank" src="http://yvr.ca">Airport Map</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div data-bind="if: unionVisible">
                 <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                     <div class="card tile">

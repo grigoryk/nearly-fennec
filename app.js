@@ -183,7 +183,8 @@ function NearlyFennecVM() {
             }
         }
 
-        dummySearch();
+        // dummySearch();
+        self.isLoadingNearby(false);
     };
 
     self.getPlaceDetails = function(placeId, callback, errCallback) {
