@@ -47,7 +47,7 @@
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: login">Log in</button>
+                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: uiActions.login">Log in</button>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
         <div class="header">
             <h4>Nearly Fennec</h4>
 
-            <button class="btn btn-primary btn-lg" data-bind="click: nearbySearch"><span class="glyphicon glyphicon-refresh"></span></button>
+            <button class="btn btn-primary btn-lg" data-bind="click: uiActions.nearbySearch"><span class="glyphicon glyphicon-refresh"></span></button>
         </div>
 
         <div class="loading" data-bind="if: isLoading()">
@@ -70,51 +70,31 @@
         </div>
 
         <div class="content" data-bind="ifnot: isLoading()">
-            <!--FAKE cards: edit here! -->
-            <div class="cards">
+            <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                 <div class="card tile">
                     <div class="name">
-                        <a target="_blank">YVR Airport</a>
+                        <a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>
                     </div>
-                    <div class="address">123 Airport Pl</div>
+                    <div class="address" data-bind="text: place.vicinity"></div>
                     <div class="photo">
-                        <img src="yvr.jpg">
+                        <img data-bind="attr: {src: place.photo}">
                     </div>
-                    <div class="items">
+                    <div class="items" data-bind="foreach: items">
                         <div class="item">
                             <strong>5m ago</strong>
-                            <a target="_blank" src="http://yvr.ca">Airport Map</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div data-bind="if: unionVisible">
-                <div class="cards" data-bind="foreach: union, visible: union().length > 0">
-                    <div class="card tile">
-                        <div class="name">
-                            <a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>
-                        </div>
-                        <div class="address" data-bind="text: place.vicinity"></div>
-                        <div class="photo">
-                            <img data-bind="attr: {src: place.photo}">
-                        </div>
-                        <div class="items" data-bind="foreach: items">
-                            <div class="item">
-                                <strong>5m ago</strong>
-                                <a data-bind="attr: {href: url}, text: displayTitle" target="_blank"></a>
-                            </div>
+                            <a data-bind="attr: {href: url}, text: displayTitle" target="_blank"></a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="debug tile">
-                <p><button data-bind="click: fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;<button data-bind="click: logout">Logout</button></p>
+                <p><button data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;<button data-bind="click: uiActions.logout">Logout</button></p>
+                <p><strong>Nearly debug &darr;</strong></p>
                 <p>Cards: <span data-bind="text: union().length"></span></p>
                 <p>Places nearby: <span data-bind="text: places().length"></span></p>
                 <p>History items: <span data-bind="text: historyItems().length"></span></p>
-                <p><strong>Nearly debug &uarr;</strong></p>
+                <p>Coordinates: <span data-bind="text: positionDisplayCoordinates"></span></p>
             </div>
         </div>
     </div>
@@ -126,7 +106,15 @@
     <script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/urijs/src/URI.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+
+    <script>
+        var app = {};
+    </script>
+
+    <script type="text/javascript" src="js/dummyRecommendations.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/models.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>
