@@ -1,0 +1,25 @@
+{
+  "name": "nearly-fennec",
+  "authors": [
+    "Grigory Kruglov <grigory@kruglov.ca>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "GPLv3",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "knockout": "^3.4.0",
+    "underscore": "^1.8.3",
+    "urijs": "^1.18.1",
+    "bootstrap": "^3.3.6",
+    "flatui": "*"
+  }
+}

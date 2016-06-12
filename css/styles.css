@@ -1,0 +1,84 @@
+html, body {
+    height: 100%;
+}
+body {
+    background-color: #1abc9c;
+    margin: 0;
+}
+
+.header {
+    background-color: orange;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 5px 0 12px 10px;
+}
+
+.header h4 {
+    font-size: 19pt;
+    float: left;
+}
+
+.header button {
+    float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.login-form h4 {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.cards,
+.loading,
+.content,
+.debug {
+    margin: 90px 0px 0px 5px;
+}
+
+.debug {
+    margin-right: 10px;
+}
+
+.debug p {
+    margin-bottom: 0;
+}
+
+.card {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 90%;
+}
+
+.card .name {
+    padding-bottom: 3px;
+    font-size: 14pt;
+}
+
+.card .name a,
+.card .name a:visited {
+    color: #333;
+}
+
+.card .items {
+    margin-top: 3px;
+}
+
+.card .items .item {
+    margin-bottom: 5px;
+}
+
+.card .items .item a,
+.card .items .item a:visited {
+    color: #333;
+}
+
+.loading {
+    font-size: 15pt;
+}
+
+#map {
+    display: none;
+}

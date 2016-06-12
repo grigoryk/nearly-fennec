@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NearlyFennec</title>
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Web Starter Kit">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#2F3BA2">
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/flatui/css/flat-ui.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div data-bind="ifnot: isLoggedIn">
+        <div class="login">
+            <div class="login-form">
+                <h4><strong>Nearly Fennec</strong> says: let's access your <u>Firefox Account</u> history:</h4>
+                <div class="form-group">
+                    <input data-bind="value: email" class="form-control login-field" placeholder="Enter your email" type="text">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+
+                <div class="form-group">
+                    <input data-bind="value: password" class="form-control login-field" placeholder="Password" type="password">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+
+                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: login">Log in</button>
+            </div>
+        </div>
+    </div>
+
+    <div data-bind="if: isLoggedIn()">
+        <div class="header">
+            <h4>Nearly Fennec</h4>
+
+            <button class="btn btn-primary btn-lg" data-bind="click: nearbySearch"><span class="glyphicon glyphicon-refresh"></span></button>
+        </div>
+
+        <div class="loading" data-bind="if: isLoading()">
+            <div data-bind="if: isLoadingNearby()">
+                Figuring out what's near...
+            </div>
+
+            <div data-bind="if: isLoadingHistory()">
+                Loading your browsing history...
+            </div>
+        </div>
+
+        <div class="content" data-bind="ifnot: isLoading()">
+            <div data-bind="if: unionVisible">
+                <div class="cards" data-bind="foreach: union, visible: union().length > 0">
+                    <div class="card tile">
+                        <div class="name">
+                            <a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>
+                        </div>
+                        <div class="address" data-bind="text: place.vicinity"></div>
+                        <div class="photo">
+                            <img data-bind="attr: {src: place.photo}">
+                        </div>
+                        <div class="items" data-bind="foreach: items">
+                            <div class="item">
+                                <strong>5m ago</strong>
+                                <a data-bind="attr: {href: url}, text: displayTitle" target="_blank"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="debug tile">
+                <p><button data-bind="click: fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;<button data-bind="click: logout">Logout</button></p>
+                <p>Cards: <span data-bind="text: union().length"></span></p>
+                <p>Places nearby: <span data-bind="text: places().length"></span></p>
+                <p>History items: <span data-bind="text: historyItems().length"></span></p>
+                <p><strong>Nearly debug &uarr;</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpqyu8qVXI-5mF2Og9ABjn21iFscEBm2Q&libraries=places"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/urijs/src/URI.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
