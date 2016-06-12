@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NearlyFennec</title>
+    <title>Nearby</title>
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -34,11 +34,14 @@
 
 <body>
     <div data-bind="ifnot: isLoggedIn">
-        <div class="login">
-            <div class="login-form">
-                <h4><strong>Nearly Fennec</strong> says: let's access your <u>Firefox Account</u> history:</h4>
+        <div id="header">
+            <h1>What's Nearby?</h1>
+        </div>
+        <div id="login">
+            <div id="login-form">
+                <h4>Sign in to your <strong>Firefox Account:</strong></h4>
                 <div class="form-group">
-                    <input data-bind="value: email" class="form-control login-field" placeholder="Enter your email" type="text">
+                    <input data-bind="value: email" class="form-control login-field" placeholder="Email" type="text">
                     <label class="login-field-icon fui-user" for="login-name"></label>
                 </div>
 
@@ -47,21 +50,19 @@
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: login">Log in</button>
+                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: login">Sign in</button>
             </div>
         </div>
     </div>
 
     <div data-bind="if: isLoggedIn()">
-        <div class="header">
-            <h4>Nearly Fennec</h4>
-
-            <button class="btn btn-primary btn-lg" data-bind="click: nearbySearch"><span class="glyphicon glyphicon-refresh"></span></button>
+        <div id="header">
+            <h1>What's Nearby?</h1>
         </div>
 
         <div class="loading" data-bind="if: isLoading()">
             <div data-bind="if: isLoadingNearby()">
-                Figuring out what's near...
+                Figuring out what's nearby...
             </div>
 
             <div data-bind="if: isLoadingHistory()">
@@ -72,18 +73,20 @@
         <div class="content" data-bind="ifnot: isLoading()">
             <!--FAKE cards: edit here! -->
             <div class="cards">
-                <div class="card tile">
-                    <div class="name">
-                        <a target="_blank">YVR Airport</a>
-                    </div>
-                    <div class="address">123 Airport Pl</div>
-                    <div class="photo">
+                <div class="photo">
                         <img src="yvr.jpg">
+                </div>
+                <div class="info">
+                    <div class="name">
+                        <strong>YVR Airport</strong>
                     </div>
+                    <div class="address">1 Airport Rd, Richmond, BC</div>
                     <div class="items">
-                        <div class="item">
-                            <strong>5m ago</strong>
-                            <a target="_blank" src="http://yvr.ca">Airport Map</a>
+                        <div class="visited">
+                            Visited June 1, 2016
+                        </div>
+                        <div class="distance">
+                            <a target="_blank" src="http://yvr.ca">Nearby 0.5 km</a>
                         </div>
                     </div>
                 </div>
@@ -101,14 +104,16 @@
                         </div>
                         <div class="items" data-bind="foreach: items">
                             <div class="item">
-                                <strong>5m ago</strong>
+                                <strong>Visited 5 min ago</strong>
                                 <a data-bind="attr: {href: url}, text: displayTitle" target="_blank"></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <div id="retry">
+                <button class="btn btn-primary btn-lg" data-bind="click: nearbySearch">Shuffle!</button>
+            </div>
             <div class="debug tile">
                 <p><button data-bind="click: fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;<button data-bind="click: logout">Logout</button></p>
                 <p>Cards: <span data-bind="text: union().length"></span></p>
