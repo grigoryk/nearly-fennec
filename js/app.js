@@ -1,7 +1,7 @@
 app.VM = function() {
     var self = this;
 
-    self.historyLimit = 20000;
+    self.historyLimit = 100;
 
     self.isLoggedIn = ko.observable(false);
     self.email = ko.observable("");
@@ -73,19 +73,30 @@ app.VM = function() {
         let places = {};
 
         _.each(self.places(), function(place) {
+            // hack... why isn't place.domain always function??
+            var placeDomain;
+            if ((typeof place.domain) === "string") {
+                placeDomain = place.domain;
+            }  else if ((typeof place.domain) === "function") {
+                placeDomain = place.domain();
+            } else {
+                return;
+            }
+
             _.each(self.historyItems(), function(item) {
-                if (place.domain() === undefined || item.domain() === undefined) {
+                if (item.domain() === undefined) {
                     return;
                 }
 
-                if (place.domain() !== item.domain()) {
+                if (placeDomain !== item.domain()) {
                     return;
                 }
 
-                if (places[place.website()] !== undefined) {
-                    places[place.website()].items.push(item);
+                if (places[place.website] !== undefined) {
+                    places[place.website].items.push(item);
                 } else {
-                    places[place.website()] = {
+                    console.log(place.website);
+                    places[place.website] = {
                         place: place,
                         items: [item]
                     };
@@ -131,15 +142,15 @@ app.VM = function() {
             function(results, status) {
                 let places = [];
                 _.each(results, function(res) {
-                    var place = apps.services.kvCache.get(res.place_id);
+                    var place = app.services.kvCache.get(res.place_id);
                     if (place !== undefined) {
                         console.log("Found place in cache", res.place_id);
                         places.push(place);
                     } else {
                         self.getPlaceDetails(res.place_id,
                             function(place) {
-                                apps.services.kvCache.set(res.place_id, place);
-                                places.push(new Place(place));
+                                app.services.kvCache.set(res.place_id, place);
+                                places.push(new app.models.Place(place));
                             },
 
                             function(errorStatus) {}
@@ -148,10 +159,6 @@ app.VM = function() {
                 });
 
                 self.places(places);
-
-                if (!opts.background) {
-                    self.isLoadingNearby(false);
-                }
             }
         );
     };
