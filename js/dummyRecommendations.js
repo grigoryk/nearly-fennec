@@ -110,4 +110,52 @@ var DUMMY_RECOMMENDATIONS = [
         },
         items: []
     },
+
+    {
+        place: {
+            name: "The Victoria",
+            website: "http://www.yelp.com/biz/the-victoria-paddington",
+            // lat: 41.2123,
+            // lng: 29.123,
+            rating: 4.4,
+            ratingMax: 5,
+            ratingsCount: 116,
+            vicinity: "10A Strathearn Pl, Paddington, London W2 2NH",
+            photo: "https://irs1.4sqi.net/img/general/width960/29600398_q2V2bMDoVWSkXgWw8bTWwcLfCQIjp15TE0jkaBNlfEg.jpg",
+            notes: "W19th-century pub with great selection of Fullers and decorated wallpaper."
+        },
+        items: []
+    },
+
+    {
+        place: {
+            name: "The Monkey Puzzle",
+            website: "https://www.yelp.co.uk/biz/the-monkey-puzzle-london",
+            // lat: 41.2123,
+            // lng: 29.123,
+            rating: 4,
+            ratingMax: 5,
+            ratingsCount: 16,
+            vicinity: "30 Southwick Street, Paddington, London W2 1JQ",
+            photo: "https://irs1.4sqi.net/img/general/width960/51972983_HJIV_PgUVlsxp49WGHTxy8miQFHR8h8uCYae8J9G5DI.jpg",
+            notes: "Lovely little pub for an after work drink or casual pint out."
+        },
+        items: []
+    },
+
+    {
+        place: {
+            name: "Marks & Spencer",
+            website: "https://foursquare.com/v/marks--spencer/4bb1daa7f964a520a7a63ce3?#tasteId=52cb360d498e49ae1f58c8d9",
+            // lat: 41.2123,
+            // lng: 29.123,
+            rating: 7.2,
+            ratingMax: 10,
+            ratingsCount: 67,
+            vicinity: "258 Edgware Rd, Paddington, Greater London, W2 1DU",
+            photo: "https://irs1.4sqi.net/img/general/width960/7884262_oBiP2oD5zWmMHVyHWLekpkuT-xg8fkRveBlNXXbGr_o.jpg",
+            notes: "Great Salads for lunch. Take them to Hyde Park."
+        },
+        items: []
+    },
 ];
