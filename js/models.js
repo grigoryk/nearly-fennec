@@ -5,10 +5,15 @@
             this.title = ko.observable(data.title);
             this.url = ko.observable(data.url);
             this.visitCount = ko.observable(data.visitCount);
+            this.latestVisit = ko.observable(data.latestVisit);
             this.domain = ko.observable(data.domain);
 
             this.displayTitle = ko.computed(function() {
                 return self.title() || self.url();
+            });
+
+            this.latestVisitFromNow = ko.computed(function() {
+                return moment(self.latestVisit() / 1000).fromNow();
             });
         },
 

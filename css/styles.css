@@ -43,16 +43,16 @@ h1 {
     overflow: hidden;
 }
 
-.loading {
-    text-align: center;
-}
-
 .debug {
     margin-left: 20px
 }
 
 .union-details, .loading {
     margin: 20px;
+}
+
+.loading {
+    color: #777;
 }
 
 .card {
@@ -64,14 +64,12 @@ h1 {
     background: #FFFFFF;
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.30);
     overflow: hidden;
-}
-
-.card, .photo {
-    height: 180px;
+    min-height: 180px;
 }
 
 .photo {
     width: 33%;
+    height: 180px;
     text-align: center;
     transition: width 0.5s;
     float: right;
@@ -81,6 +79,31 @@ h1 {
     z-index: 1;
 }
 
+.items {
+    width: 100%;
+    padding-left: 20px;
+    background-color: white;
+    z-index: 2;
+    bottom: 0px;
+}
+
+.keep-searching {
+    margin-left: 5px;
+}
+
+.recommendations-title {
+    font-size: 15pt;
+    margin: 20px;
+}
+
+.overflow-url {
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    max-width: 233px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .debug {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -88,15 +111,6 @@ h1 {
 
 .debug p {
     margin-bottom: 0;
-}
-
-.card .name a,
-.card .name a:visited,
-.card .items .item a,
-.card .items .item a:visited {
-    font-size: 18px;
-    color: #363B40;
-    line-height: 24px;
 }
 
 .card .items {

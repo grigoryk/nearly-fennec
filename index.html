@@ -69,11 +69,11 @@
 
         <div class="loading" data-bind="if: isLoading()">
             <div data-bind="if: isLoadingNearby()">
-                Figuring out what's nearby...
+                <i class="glyphicon glyphicon-refresh"></i> Figuring out what's nearby...
             </div>
 
             <div data-bind="if: isLoadingHistory()">
-                Loading your browsing history...
+                <i class="glyphicon glyphicon-refresh"></i> Loading your browsing history...
             </div>
         </div>
 
@@ -89,6 +89,7 @@
                         <button class="btn btn-small btn-primary" data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;
                         <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
                     </p>
+                    <p class="keep-searching"><i class="glyphicon glyphicon-arrow-up"></i> keep searching!</p>
                 </div>
             </div>
 
@@ -106,10 +107,14 @@
                         <div class="notes" data-bind="if: place.notes">
                             <span data-bind="text: place.notes"></span>
                         </div>
-                        <div class="items" data-bind="foreach: items">
-                            <div class="visited">Visited 5 min ago</div>
-                            <div class="distance">
-                                <a data-bind="attr: {href: url}, text: displayTitle" target="_blank">Nearby 0.5 km</a>
+                    </div>
+                    <div class="items">
+                        <strong>Visits:</strong>
+                        <div data-bind="foreach: _.first(items, 3)">
+                            <div class="visited">
+                                <span data-bind="text: latestVisitFromNow"></span> <a data-bind="attr: {href: url}" target="_blank">
+                                    <p class="overflow-url" data-bind="text: displayTitle"></p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -117,6 +122,8 @@
             </div>
         </div>
     </div>
+
+    <div class="recommendations-title">London recommendations:</div>
 
     <div class="cards" data-bind="foreach: recommendations">
         <div class="card">
@@ -134,12 +141,6 @@
                 </div>
                 <div class="notes" data-bind="if: place.notes">
                     <span data-bind="text: place.notes"></span>
-                </div>
-                <div class="items" data-bind="foreach: items">
-                    <div class="visited">Visited 5 min ago</div>
-                    <div class="distance">
-                        <a data-bind="attr: {href: url}, text: displayTitle" target="_blank">Nearby 0.5 km</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -163,6 +164,7 @@
     <script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/urijs/src/URI.js"></script>
+    <script type="text/javascript" src="bower_components/moment/moment.js"></script>
 
     <script>
         var app = {};

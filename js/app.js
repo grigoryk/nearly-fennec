@@ -48,9 +48,9 @@ app.VM = function() {
         },
 
         logout: function () {
-            window.localStorage["email"] = undefined;
-            window.localStorage["password"] = undefined;
-            window.localStorage["history"] = undefined;
+            window.localStorage.removeItem("email");
+            window.localStorage.removeItem("password");
+            window.localStorage.removeItem("history");
             self.email(undefined);
             self.password(undefined);
             self.isLoggedIn(false);
@@ -64,6 +64,7 @@ app.VM = function() {
         },
 
         nearbySearch: function () {
+            self.isLoadingNearby(true);
             self.getCurrentLocation(function (position) {
                 self.getPlacesNearPosition(position);
             });
@@ -90,30 +91,19 @@ app.VM = function() {
         let places = {};
 
         _.each(self.places(), function(place) {
-            // hack... why isn't place.domain always function??
-            var placeDomain;
-            if ((typeof place.domain) === "string") {
-                placeDomain = place.domain;
-            }  else if ((typeof place.domain) === "function") {
-                placeDomain = place.domain();
-            } else {
-                return;
-            }
-
             _.each(self.historyItems(), function(item) {
-                if (item.domain() === undefined) {
+                if (place.domain() === undefined || item.domain() === undefined) {
                     return;
                 }
 
-                if (placeDomain !== item.domain()) {
+                if (place.domain() !== item.domain()) {
                     return;
                 }
 
-                if (places[place.website] !== undefined) {
-                    places[place.website].items.push(item);
+                if (places[place.website()] !== undefined) {
+                    places[place.website()].items.push(item);
                 } else {
-                    console.log(place.website);
-                    places[place.website] = {
+                    places[place.website()] = {
                         place: place,
                         items: [item]
                     };
@@ -153,6 +143,7 @@ app.VM = function() {
     };
 
     self.getPlacesNearPosition = function(position) {
+        self.isLoadingNearby(true);
         app.services.googlePlaces.nearbySearch(
             position.coords.latitude, position.coords.longitude,
             function(results, status) {
@@ -173,6 +164,8 @@ app.VM = function() {
                         );
                     }
                 });
+
+                self.isLoadingNearby(false);
 
                 self.places(places);
             }
@@ -207,6 +200,9 @@ app.VM = function() {
 
             if (item.visits) {
                 obj.visitCount = item.visits.length;
+                obj.latestVisit = _.max(item.visits, function (visit) {
+                    return visit.date;
+                }).date;
             }
 
             return obj;
