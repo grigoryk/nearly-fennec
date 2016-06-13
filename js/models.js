@@ -22,6 +22,9 @@
             this.rating = ko.observable(data.rating);
             this.ratingsCount = ko.observable(data.ratingsCount);
             this.vicinity = ko.observable(data.vicinity);
+            this.notes = ko.observable(data.notes);
+
+            this.photoExpanded = ko.observable(false);
         },
 
         Coordinates: function (data) {

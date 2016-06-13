@@ -67,10 +67,13 @@ h1 {
 }
 
 .photo {
-    width: 140px;
-    border-radius: 0 6px 6px 0;
-    float: right;
+    width: 33%;
     text-align: center;
+    transition: width 0.5s;
+    float: right;
+    position: absolute;
+    overflow: hidden;
+    right: 0;
 }
 
 .debug {

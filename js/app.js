@@ -64,6 +64,11 @@ app.VM = function() {
 
         fetchHistory: function () {
             self.fetchHistory(self.email(), self.password());
+        },
+
+        expandPhoto: function (obj) {
+            console.log(arguments);
+            obj.place.photoExpanded(!obj.place.photoExpanded());
         }
     }
 
@@ -191,7 +196,7 @@ app.VM = function() {
             };
 
             if (obj.url) {
-                obj.domain = new URI(obj.url).domain();
+                obj.domain = new URI(obj.url).hostname();
             }
 
             if (item.visits) {
@@ -212,6 +217,12 @@ app.VM = function() {
     };
 
     self.getRecommendations = function (pos) {
+        self.recommendations(_.map(DUMMY_RECOMMENDATIONS, function (rec) {
+            return {
+                place: new app.models.Place(rec.place),
+                items: rec.items
+            };
+        }));
     };
 
     self.getCurrentLocation = function (callback) {
@@ -249,13 +260,12 @@ app.VM = function() {
         self.setIsLoggedIn();
         self.getCurrentLocation(function (position) {
             self.getPlacesNearPosition(position);
-            self.getRecommendations(position);
         });
         self.loadCachedHistory();
+        self.getRecommendations();
     };
 
     self.init();
-    self.recommendations(DUMMY_RECOMMENDATIONS);
 }
 
 ko.applyBindings(new app.VM());

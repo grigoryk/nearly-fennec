@@ -80,7 +80,7 @@
         <div class="content" data-bind="ifnot: isLoading()">
             <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                 <div class="card">
-                    <div class="photo">
+                    <div class="photo" data-bind="click: $parent.uiActions.expandPhoto, style: {width: place.photoExpanded() ? '90%' : '33%'}">
                         <img data-bind="attr: {src: place.photo}">
                     </div>
                     <div class="info">
@@ -89,6 +89,9 @@
                             <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
                         </div>
                         <div class="address" data-bind="text: place.vicinity"></div>
+                        <div class="notes" data-bind="if: place.notes">
+                            <span data-bind="text: place.notes"></span>
+                        </div>
                         <div class="items" data-bind="foreach: items">
                             <div class="visited">Visited 5 min ago</div>
                             <div class="distance">
