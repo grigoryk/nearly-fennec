@@ -1,9 +1,11 @@
 app.VM = function() {
     var self = this;
 
-    self.historyLimit = 100;
+    self.historyLimit = 20000;
 
     self.isLoggedIn = ko.observable(false);
+    self.isLoggingIn = ko.observable(false);
+    self.loginError = ko.observable("");
     self.email = ko.observable("");
     self.password = ko.observable("");
 
@@ -29,14 +31,18 @@ app.VM = function() {
             var email = self.email(),
                 password = self.password();
 
+            self.loginError("");
+            self.isLoggingIn(true);
+
             self.fetchHistory(email, password, function (result) {
+                self.isLoggingIn(false);
                 if (result.success) {
                     window.localStorage["email"] = email;
                     window.localStorage["password"] = password;
 
                     self.isLoggedIn(true);
                 } else {
-                    alert("Problems logging in: " + result.error);
+                    self.loginError(result.error.message);
                 }
             });
         },
@@ -115,25 +121,24 @@ app.VM = function() {
     self.fetchHistory = function (email, password, callback) {
         self.isLoadingHistory(true);
 
-        // TODO ERROR HANDLING BROKEN
-
         $.post("https://fennec-history-proxy.herokuapp.com/history", {
             email: email,
             password: password,
             limit: self.historyLimit
-        }, function (results) {
+        }).done(function (results) {
             self.processHistory(results);
-            self.isLoadingHistory(false);
 
             callback && callback({
                 success: true
             });
-        }, function (error) {
+        }).fail(function (res) {
             callback && callback({
                 success: false,
-                error: error
+                error: res.responseJSON.error
             });
-        }, 'json');
+        }).always(function () {
+            self.isLoadingHistory(false);
+        });
     };
 
     self.getPlacesNearPosition = function(position) {
@@ -201,7 +206,7 @@ app.VM = function() {
         self.historyItems([]);
         let ls = [];
         _.each(processed, function(p) {
-            is.push(new HistoryItem(p));
+            ls.push(new app.models.HistoryItem(p));
         });
         self.historyItems(ls);
     };

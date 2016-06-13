@@ -50,7 +50,14 @@
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: uiActions.login">Sign in</button>
+                <div class="form-group" data-bind="if: loginError">
+                    <strong>Error:</strong> <span data-bind="text: loginError"></span>
+                </div>
+
+                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: uiActions.login, attr: {disabled: isLoggingIn}">
+                    <span data-bind="if: isLoggingIn">Downloading your browsing history...</span>
+                    <span data-bind="ifnot: isLoggingIn">Sign in</span>
+                </button>
             </div>
         </div>
     </div>
