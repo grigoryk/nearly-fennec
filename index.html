@@ -39,7 +39,7 @@
         </div>
         <div id="login">
             <div id="login-form">
-                <h4>Sign in to your <strong>Firefox Account:</strong></h4>
+                <h4>Sign into your <strong>Firefox Account</strong> to find nearby places based on your browsing history:</h4>
                 <div class="form-group">
                     <input data-bind="value: email" class="form-control login-field" placeholder="Email" type="text">
                     <label class="login-field-icon fui-user" for="login-name"></label>
@@ -78,12 +78,26 @@
         </div>
 
         <div class="content" data-bind="ifnot: isLoading()">
+            <div class="union-details">
+                <div class="no-nearby" data-bind="ifnot: union().length">
+                    <p>No local places matched your browsing history :(</p>
+                </div>
+
+                <div>
+                    <p>
+                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Search nearby!</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
+                    </p>
+                </div>
+            </div>
+
             <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                 <div class="card">
                     <div class="photo" data-bind="click: $parent.uiActions.expandPhoto, style: {width: place.photoExpanded() ? '90%' : '33%'}">
                         <img data-bind="attr: {src: place.photo}">
                     </div>
-                    <div class="info">
+                    <div class="info" data-bind="style: {opacity: place.photoExpanded() ? '0.5' : '1'}">
                         <div class="name">
                             <strong data-bind="text: place.name"></strong>
                             <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
@@ -101,21 +115,44 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="retry">
-                <button class="btn btn-primary btn-lg" data-bind="click: uiActions.nearbySearch">Shuffle!</button>
+    <div class="cards" data-bind="foreach: recommendations">
+        <div class="card">
+            <div class="photo" data-bind="click: $parent.uiActions.expandPhoto, style: {width: place.photoExpanded() ? '90%' : '33%'}">
+                <img data-bind="attr: {src: place.photo}">
             </div>
-            <div class="debug tile">
-                <p>
-                    <button data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;
-                    <button data-bind="click: uiActions.logout">Logout</button>
-                </p>
-                <p><strong>Nearly debug &darr;</strong></p>
-                <p>Cards: <span data-bind="text: union().length"></span></p>
-                <p>Places nearby: <span data-bind="text: places().length"></span></p>
-                <p>History items: <span data-bind="text: historyItems().length"></span></p>
-                <p>Coordinates: <span data-bind="text: positionDisplayCoordinates"></span></p>
+            <div class="info" data-bind="style: {opacity: place.photoExpanded() ? '0.5' : '1'}">
+                <div class="name">
+                    <strong data-bind="text: place.name"></strong>
+                    <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
+                </div>
+                <div class="address" data-bind="text: place.vicinity"></div>
+                <div class="rating">
+                    <span data-bind="text: place.ratingDisplay"></span>
+                </div>
+                <div class="notes" data-bind="if: place.notes">
+                    <span data-bind="text: place.notes"></span>
+                </div>
+                <div class="items" data-bind="foreach: items">
+                    <div class="visited">Visited 5 min ago</div>
+                    <div class="distance">
+                        <a data-bind="attr: {href: url}, text: displayTitle" target="_blank">Nearby 0.5 km</a>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div data-bind="if: isLoggedIn()">
+        <div class="debug tile">
+            <p><strong>Nearly debug &darr;</strong></p>
+            <p>Cards: <span data-bind="text: union().length"></span></p>
+            <p>Places nearby: <span data-bind="text: places().length"></span></p>
+            <p>History items: <span data-bind="text: historyItems().length"></span></p>
+            <p>Coordinates: <span data-bind="text: positionDisplayCoordinates"></span></p>
+            <button class="btn btn-small btn-default" data-bind="click: uiActions.clearAll">Clear all (cache, account)</button>
         </div>
     </div>
 

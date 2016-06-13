@@ -13,6 +13,7 @@
         },
 
         Place: function (data) {
+            var self = this;
             this.name = ko.observable(data.name);
             this.photo = ko.observable(data.photo);
             this.website = ko.observable(data.website);
@@ -20,11 +21,16 @@
             this.lat = ko.observable(data.lat);
             this.lng = ko.observable(data.lng);
             this.rating = ko.observable(data.rating);
+            this.ratingMax = ko.observable(data.ratingMax || 5);
             this.ratingsCount = ko.observable(data.ratingsCount);
             this.vicinity = ko.observable(data.vicinity);
             this.notes = ko.observable(data.notes);
 
             this.photoExpanded = ko.observable(false);
+
+            this.ratingDisplay = ko.computed(function () {
+                return self.rating() + "/" + self.ratingMax() + " (" + self.ratingsCount() + " ratings)";
+            });
         },
 
         Coordinates: function (data) {

@@ -48,6 +48,15 @@ app.VM = function() {
         },
 
         logout: function () {
+            window.localStorage["email"] = undefined;
+            window.localStorage["password"] = undefined;
+            window.localStorage["history"] = undefined;
+            self.email(undefined);
+            self.password(undefined);
+            self.isLoggedIn(false);
+        },
+
+        clearAll: function() {
             window.localStorage.clear();
             self.email(undefined);
             self.password(undefined);
@@ -55,11 +64,9 @@ app.VM = function() {
         },
 
         nearbySearch: function () {
-            if (!self.currentPosition()) {
-                alert("No idea where you are :(");
-                return;
-            }
-            self.getPlacesNearPosition(self.currentPosition());
+            self.getCurrentLocation(function (position) {
+                self.getPlacesNearPosition(position);
+            });
         },
 
         fetchHistory: function () {
@@ -67,7 +74,6 @@ app.VM = function() {
         },
 
         expandPhoto: function (obj) {
-            console.log(arguments);
             obj.place.photoExpanded(!obj.place.photoExpanded());
         }
     }
@@ -115,12 +121,12 @@ app.VM = function() {
             });
         });
 
-        return _.shuffle(_.union(self.recommendations(), _.map(_.keys(places), function(key) {
+        return _.map(_.keys(places), function(key) {
             return {
                 place: places[key].place,
                 items: places[key].items
             }
-        })));
+        });
     });
 
     self.fetchHistory = function (email, password, callback) {
@@ -155,7 +161,7 @@ app.VM = function() {
                     var place = app.services.kvCache.get(res.place_id);
                     if (place !== undefined) {
                         console.log("Found place in cache", res.place_id);
-                        places.push(place);
+                        places.push(new app.models.Place(place));
                     } else {
                         self.getPlaceDetails(res.place_id,
                             function(place) {
@@ -217,12 +223,12 @@ app.VM = function() {
     };
 
     self.getRecommendations = function (pos) {
-        self.recommendations(_.map(DUMMY_RECOMMENDATIONS, function (rec) {
+        self.recommendations(_.shuffle(_.map(DUMMY_RECOMMENDATIONS, function (rec) {
             return {
                 place: new app.models.Place(rec.place),
                 items: rec.items
             };
-        }));
+        })));
     };
 
     self.getCurrentLocation = function (callback) {

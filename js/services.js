@@ -44,7 +44,7 @@
             }
 
             if (placeObj.website) {
-                placeObj.domain = new URI(placeObj.website).domain();
+                placeObj.domain = new URI(placeObj.website).hostname();
             }
 
             return placeObj;
