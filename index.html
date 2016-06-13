@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nearby</title>
+    <title>Find places nearby</title>
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -39,7 +39,7 @@
         </div>
         <div id="login">
             <div id="login-form">
-                <h4>Sign into your <strong>Firefox Account</strong> to find nearby places based on your browsing history:</h4>
+                <h4>Sign in to your <strong>Firefox Account:</strong></h4>
                 <div class="form-group">
                     <input data-bind="value: email" class="form-control login-field" placeholder="Email" type="text">
                     <label class="login-field-icon fui-user" for="login-name"></label>
@@ -55,7 +55,7 @@
                 </div>
 
                 <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: uiActions.login, attr: {disabled: isLoggingIn}">
-                    <span data-bind="if: isLoggingIn">Downloading your browsing history...</span>
+                    <span data-bind="if: isLoggingIn">Syncing with your browsing history...</span>
                     <span data-bind="ifnot: isLoggingIn">Sign in</span>
                 </button>
             </div>
@@ -69,27 +69,27 @@
 
         <div class="loading" data-bind="if: isLoading()">
             <div data-bind="if: isLoadingNearby()">
-                <i class="glyphicon glyphicon-refresh"></i> Figuring out what's nearby...
+                <i class="glyphicon glyphicon-refresh"></i> Finding places nearby...
             </div>
 
             <div data-bind="if: isLoadingHistory()">
-                <i class="glyphicon glyphicon-refresh"></i> Loading your browsing history...
+                <i class="glyphicon glyphicon-refresh"></i> Syncing history...
             </div>
         </div>
 
         <div class="content" data-bind="ifnot: isLoading()">
             <div class="union-details">
                 <div class="no-nearby" data-bind="ifnot: union().length">
-                    <p>No local places matched your browsing history :(</p>
+                    <p>No nearby places matched your browsing history :(</p>
                 </div>
 
                 <div>
                     <p>
-                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Search nearby!</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.fetchHistory"><i class="glyphicon glyphicon-refresh"></i> History</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Search nearby again</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.fetchHistory">Sync browsing history</button>&nbsp;&nbsp;&nbsp;
                         <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
                     </p>
-                    <p class="keep-searching"><i class="glyphicon glyphicon-arrow-up"></i> keep searching!</p>
+                    <!-- <p class="keep-searching"><i class="glyphicon glyphicon-arrow-up"></i> keep searching!</p> -->
                 </div>
             </div>
 
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="recommendations-title">London recommendations:</div>
+    <div class="recommendations-title">Check out these places!</div>
 
     <div class="cards" data-bind="foreach: recommendations">
         <div class="card">
