@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NearlyFennec</title>
+    <title>Nearby</title>
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -34,11 +34,14 @@
 
 <body>
     <div data-bind="ifnot: isLoggedIn">
-        <div class="login">
-            <div class="login-form">
-                <h4><strong>Nearly Fennec</strong> says: let's access your <u>Firefox Account</u> history:</h4>
+        <div id="header">
+            <h1>What's Nearby?</h1>
+        </div>
+        <div id="login">
+            <div id="login-form">
+                <h4>Sign in to your <strong>Firefox Account:</strong></h4>
                 <div class="form-group">
-                    <input data-bind="value: email" class="form-control login-field" placeholder="Enter your email" type="text">
+                    <input data-bind="value: email" class="form-control login-field" placeholder="Email" type="text">
                     <label class="login-field-icon fui-user" for="login-name"></label>
                 </div>
 
@@ -47,21 +50,19 @@
                     <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
 
-                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: uiActions.login">Log in</button>
+                <button class="btn btn-primary btn-small btn-block" href="#" data-bind="click: uiActions.login">Sign in</button>
             </div>
         </div>
     </div>
 
     <div data-bind="if: isLoggedIn()">
-        <div class="header">
-            <h4>Nearly Fennec</h4>
-
-            <button class="btn btn-primary btn-lg" data-bind="click: uiActions.nearbySearch"><span class="glyphicon glyphicon-refresh"></span></button>
+        <div id="header">
+            <h1>What's Nearby?</h1>
         </div>
 
         <div class="loading" data-bind="if: isLoading()">
             <div data-bind="if: isLoadingNearby()">
-                Figuring out what's near...
+                Figuring out what's nearby...
             </div>
 
             <div data-bind="if: isLoadingHistory()">
@@ -70,6 +71,27 @@
         </div>
 
         <div class="content" data-bind="ifnot: isLoading()">
+            <!--FAKE cards: edit here! -->
+            <div class="cards">
+                <div class="photo">
+                        <img src="yvr.jpg">
+                </div>
+                <div class="info">
+                    <div class="name">
+                        <strong>YVR Airport</strong>
+                    </div>
+                    <div class="address">1 Airport Rd, Richmond, BC</div>
+                    <div class="items">
+                        <div class="visited">
+                            Visited June 1, 2016
+                        </div>
+                        <div class="distance">
+                            <a target="_blank" src="http://yvr.ca">Nearby 0.5 km</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                 <div class="card tile">
                     <div class="name">
@@ -81,13 +103,15 @@
                     </div>
                     <div class="items" data-bind="foreach: items">
                         <div class="item">
-                            <strong>5m ago</strong>
+                            <strong>Visited 5 min ago</strong>
                             <a data-bind="attr: {href: url}, text: displayTitle" target="_blank"></a>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <div id="retry">
+                <button class="btn btn-primary btn-lg" data-bind="click: uiActions.nearbySearch">Shuffle!</button>
+            </div>
             <div class="debug tile">
                 <p><button data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;<button data-bind="click: uiActions.logout">Logout</button></p>
                 <p><strong>Nearly debug &darr;</strong></p>
@@ -101,7 +125,7 @@
 
     <div id="map"></div>
 
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpqyu8qVXI-5mF2Og9ABjn21iFscEBm2Q&libraries=places"></script>-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpqyu8qVXI-5mF2Og9ABjn21iFscEBm2Q&libraries=places"></script>
     <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="bower_components/knockout/dist/knockout.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
