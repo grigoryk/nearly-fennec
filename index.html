@@ -71,49 +71,35 @@
         </div>
 
         <div class="content" data-bind="ifnot: isLoading()">
-            <!--FAKE cards: edit here! -->
-            <div class="cards">
-                <div class="photo">
-                        <img src="yvr.jpg">
-                </div>
-                <div class="info">
-                    <div class="name">
-                        <strong>YVR Airport</strong>
+            <div class="cards" data-bind="foreach: union, visible: union().length > 0">
+                <div class="card">
+                    <div class="photo">
+                        <img data-bind="attr: {src: place.photo}">
                     </div>
-                    <div class="address">1 Airport Rd, Richmond, BC</div>
-                    <div class="items">
-                        <div class="visited">
-                            Visited June 1, 2016
+                    <div class="info">
+                        <div class="name">
+                            <strong data-bind="text: place.name"></strong>
+                            <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
                         </div>
-                        <div class="distance">
-                            <a target="_blank" src="http://yvr.ca">Nearby 0.5 km</a>
+                        <div class="address" data-bind="text: place.vicinity"></div>
+                        <div class="items" data-bind="foreach: items">
+                            <div class="visited">Visited 5 min ago</div>
+                            <div class="distance">
+                                <a data-bind="attr: {href: url}, text: displayTitle" target="_blank">Nearby 0.5 km</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="cards" data-bind="foreach: union, visible: union().length > 0">
-                <div class="card tile">
-                    <div class="name">
-                        <a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>
-                    </div>
-                    <div class="address" data-bind="text: place.vicinity"></div>
-                    <div class="photo">
-                        <img data-bind="attr: {src: place.photo}">
-                    </div>
-                    <div class="items" data-bind="foreach: items">
-                        <div class="item">
-                            <strong>Visited 5 min ago</strong>
-                            <a data-bind="attr: {href: url}, text: displayTitle" target="_blank"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="retry">
+            <div class="retry">
                 <button class="btn btn-primary btn-lg" data-bind="click: uiActions.nearbySearch">Shuffle!</button>
             </div>
             <div class="debug tile">
-                <p><button data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;<button data-bind="click: uiActions.logout">Logout</button></p>
+                <p>
+                    <button data-bind="click: uiActions.fetchHistory">Refresh History</button>&nbsp;&nbsp;&nbsp;
+                    <button data-bind="click: uiActions.logout">Logout</button>
+                </p>
                 <p><strong>Nearly debug &darr;</strong></p>
                 <p>Cards: <span data-bind="text: union().length"></span></p>
                 <p>Places nearby: <span data-bind="text: places().length"></span></p>
