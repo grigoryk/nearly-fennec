@@ -145,6 +145,22 @@ var DUMMY_RECOMMENDATIONS = [
 
     {
         place: {
+            name: "The Golden Hind",
+            website: "http://www.yelp.com/biz/the-golden-hind-london",
+            // lat: 41.2123,
+            // lng: 29.123,
+            rating: 4,
+            ratingMax: 5,
+            ratingsCount: 210,
+            vicinity: "73 Marylebone Lane, London, W1U 2PN United Kingdom",
+            photo: "https://irs0.4sqi.net/img/general/width960/4L6HPl660VkLHUsu8juCrHWaHUOqUagJek41zb3kT_U.jpg",
+            notes: "Casual atmosphere, families, couples etc. Staff is friendly."
+        },
+        items: []
+    },
+
+    {
+        place: {
             name: "Marks & Spencer",
             website: "https://foursquare.com/v/marks--spencer/4bb1daa7f964a520a7a63ce3?#tasteId=52cb360d498e49ae1f58c8d9",
             // lat: 41.2123,
