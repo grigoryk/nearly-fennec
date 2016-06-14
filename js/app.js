@@ -219,12 +219,12 @@ app.VM = function() {
     };
 
     self.getRecommendations = function (pos) {
-        self.recommendations(_.shuffle(_.map(DUMMY_RECOMMENDATIONS, function (rec) {
+        self.recommendations(_.first(_.shuffle(_.map(DUMMY_RECOMMENDATIONS, function (rec) {
             return {
                 place: new app.models.Place(rec.place),
                 items: rec.items
             };
-        })));
+        })), 2));
     };
 
     self.getCurrentLocation = function (callback) {
