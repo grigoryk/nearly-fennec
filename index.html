@@ -107,13 +107,13 @@
                     </div>
                     <div class="card-trail">
                         <div class="items">
-                            <strong>Pages visited:</strong>
+                            <h4><strong>Pages visited:</strong></h4>
                             <div data-bind="foreach: _.first(items, 3)">
                                 <div class="visited">
-                                    <span data-bind="text: latestVisitFromNow"></span>
                                     <a data-bind="attr: {href: url}" target="_blank">
                                         <p class="overflow-url" data-bind="text: displayTitle"></p>
                                     </a>
+                                    <span data-bind="text: latestVisitFromNow"></span>
                                 </div>
                             </div>
                         </div>
