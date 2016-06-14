@@ -134,7 +134,7 @@ app.VM = function() {
                 items: places[key].items
             }
         });
-        ga('send', 'event', 'HistoryData', 'loaded', ls.length);
+        ga('send', 'event', 'Cards', 'loaded', ls.length);
         return ls;
     });
 
