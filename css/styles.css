@@ -157,6 +157,11 @@ h1 {
 .address {
     font-size: 14px;
     color: #777777;
+    line-height: 14px;
+}
+
+.notes {
+    line-height: 16px;
 }
 
 .visited {
