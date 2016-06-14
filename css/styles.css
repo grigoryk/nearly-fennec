@@ -143,10 +143,9 @@ img {
     text-align: center;
 }
 
-.overflow-url {
-    margin-bottom: 5px;
+.overflow-url p {
+    max-width: 100%;
     text-overflow: ellipsis;
-    max-width: 233px;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -187,8 +186,8 @@ img {
 }
 
 .items {
-    margin-top: 40px;
-    width: 260px;
+    margin-top: 20px;
+    width: 100%;
     color: #363B40;
 }
 
@@ -211,6 +210,11 @@ img {
 
 .visited {
     font-size: 14px;
+    color: #777777;
+}
+
+.visited span {
+    font-size: 12px;
     color: #777777;
 }
 
