@@ -86,7 +86,7 @@
                 <div>
                     <p>
                         <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync browsing history</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
                         <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
                     </p>
                     <!-- <p class="keep-searching"><i class="glyphicon glyphicon-arrow-up"></i> keep searching!</p> -->
@@ -95,7 +95,7 @@
 
             <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                 <div class="card">
-                    <div class="photo" data-bind="click: $parent.uiActions.expandPhoto, style: {width: place.photoExpanded() ? '90%' : '33%'}">
+                    <div class="photo">
                         <img data-bind="attr: {src: place.photo}">
                     </div>
                     <div class="info" data-bind="style: {opacity: place.photoExpanded() ? '0.5' : '1'}">
@@ -127,7 +127,7 @@
 
     <div class="cards" data-bind="foreach: recommendations">
         <div class="card">
-            <div class="photo" data-bind="click: $parent.uiActions.expandPhoto, style: {width: place.photoExpanded() ? '90%' : '33%'}">
+            <div class="photo">
                 <img data-bind="attr: {src: place.photo}">
             </div>
             <div class="info" data-bind="style: {opacity: place.photoExpanded() ? '0.5' : '1'}">

@@ -14,10 +14,11 @@ img {
     display: block;
 }
 
-.retry {
+#retry {
+    width: 440px;
     height: 60px;
     background: #f5f5f5;
-    margin-left: 20px;
+    margin: auto;
     margin-top: 20px;
     display: block;
 }
@@ -31,11 +32,12 @@ h1 {
 }
 
 .login-form h4 {
-    color: #555;
+    color: #363B40;
     margin-bottom: 20px;
 }
 
 #login-form {
+    width: 440px;
     padding: 10px;
     margin: auto;
     margin-top: 10px;
@@ -53,10 +55,13 @@ h1 {
 
 .loading {
     color: #777;
+    text-align: center;
+    margin-top: 60px;
 }
 
 .card {
-    width: 100%;
+    width: 420px;
+    min-height: 180px;
     padding: 0px;
     margin: auto;
     margin-top: 10px;
@@ -64,19 +69,19 @@ h1 {
     background: #FFFFFF;
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.30);
     overflow: hidden;
-    min-height: 180px;
+    border-radius: 6px;
 }
 
 .photo {
-    width: 33%;
+    width: 140px;
     height: 180px;
-    text-align: center;
-    transition: width 0.5s;
+    border-radius: 0 6px 6px 0;
     float: right;
-    position: absolute;
-    overflow: hidden;
+/*    position: absolute;
+*/    overflow: hidden;
     right: 0;
-    z-index: 1;
+/*    z-index: 1;
+    transition: width 0.5s;*/
 }
 
 .items {
@@ -87,13 +92,14 @@ h1 {
     bottom: 0px;
 }
 
-.keep-searching {
+/*.keep-searching {
     margin-left: 5px;
-}
+}*/
 
 .recommendations-title {
     font-size: 15pt;
     margin: 20px;
+    text-align: center;
 }
 
 .overflow-url {
@@ -136,7 +142,7 @@ h1 {
     color: #363B40;
     line-height: 24px;
     margin-top: 0px;
-    transition: opacity 0.5s;
+    /*transition: opacity 0.5s;*/
 }
 
 .items {
