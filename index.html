@@ -66,7 +66,6 @@
         <div id="header">
             <h1>What's Nearby?</h1>
         </div>
-
         <div class="loading" data-bind="if: isLoading()">
             <div data-bind="if: isLoadingNearby()">
                 <i class="glyphicon glyphicon-refresh"></i> Finding places nearby...
@@ -81,18 +80,15 @@
             <div class="union-details">
                 <div class="no-nearby" data-bind="ifnot: union().length">
                     <p>Nothing matched your browsing history :(</p>
-                </div>
-
-                <div>
-                    <p>
-                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
-                    </p>
+                    <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
                     <!-- <p class="keep-searching"><i class="glyphicon glyphicon-arrow-up"></i> keep searching!</p> -->
                 </div>
             </div>
-
+        <div class="title">
+            <h4>Sites nearby that you've visited</h4>
+        </div>
             <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                 <div class="card">
                     <div class="photo">
@@ -125,7 +121,9 @@
         </div>
     </div>
 
-    <div class="recommendations-title"><h4>Check out these places!</h4></div>
+    <div class="title">
+        <h4>Check out these other places!</h4>
+    </div>
 
     <div class="cards" data-bind="foreach: recommendations">
         <div class="card">
@@ -150,7 +148,7 @@
         </div>
     </div>
 
-    <div class="shuffle">
+    <div class="union-details">
         <button class="btn btn-primary" data-bind="click: getRecommendations">Shuffle</button>
     </div>
 

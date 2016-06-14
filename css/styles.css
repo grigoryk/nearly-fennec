@@ -1,6 +1,39 @@
+@font-face{
+  font-family: 'RobotoRegular';
+  src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('../fonts/Roboto-Light.ttf');
+}
+
 body {
+    font-family: RobotoRegular, Helvetica, sans-serif;
     background-color: #F5F5F5;
     color: #363B40;
+}
+
+p {
+  font-family: RobotoRegular, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #363B40;
+  line-height: 24px;
+}
+
+h1 {
+    font-family: RobotoLight, Helvetica, sans-serif;
+    color: white;
+    margin: auto;
+    max-width: 480px;
+    padding: 20px;
+    font-size: 24px;
+}
+
+h4 { 
+    font-family: RobotoLight, Helvetica, sans-serif;
+    color: #777777;
+    font-size: 18px;
 }
 
 img {
@@ -23,14 +56,6 @@ img {
     display: block;
 }
 
-h1 {
-    color: white;
-    margin: auto;
-    max-width: 480px;
-    padding: 20px;
-    font-size: 24px;
-}
-
 .login-form h4 {
     color: #363B40;
     margin-bottom: 20px;
@@ -49,14 +74,18 @@ h1 {
     margin-left: 20px
 }
 
-.union-details, .loading {
-    margin: 20px;
+.union-details {
+    width: 420px;
+    padding: 0px;
+    margin: auto;
+    margin-top: 10px;
+    display: block;
 }
 
 .loading {
     color: #777;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .card {
@@ -92,6 +121,16 @@ h1 {
     bottom: 0px;
 }
 
+.title {
+    width: 440px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
 <<<<<<< HEAD
 /*.keep-searching {
 =======
@@ -103,12 +142,6 @@ h1 {
 >>>>>>> origin/master
     margin-left: 5px;
 }*/
-
-.recommendations-title {
-    font-size: 15pt;
-    margin: 20px;
-    text-align: center;
-}
 
 .overflow-url {
     margin-bottom: 5px;
