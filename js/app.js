@@ -128,12 +128,14 @@ app.VM = function() {
             });
         });
 
-        return _.map(_.keys(places), function(key) {
+        var ls = _.map(_.keys(places), function(key) {
             return {
                 place: places[key].place,
                 items: places[key].items
             }
         });
+        ga('send', 'event', 'HistoryData', 'loaded', ls.length);
+        return ls;
     });
 
     self.fetchHistory = function (email, password, callback) {
@@ -233,6 +235,7 @@ app.VM = function() {
             ls.push(new app.models.HistoryItem(p));
         });
         self.historyItems(ls);
+        ga('send', 'event', 'HistoryData', 'loaded', items.length);
     };
 
     self.getRecommendations = function (pos) {
