@@ -271,9 +271,21 @@ app.VM = function() {
     self.init();
 }
 
-ko.applyBindings(new app.VM());
+var progress = 0,
+    loadTime = 7000,
+    updateProgressEvery = 500,
+
+    progressInterval = window.setInterval(function () {
+        progress = progress + updateProgressEvery;
+        console.log(progress);
+
+        $(".load-progress").html(Math.round((progress/loadTime) * 100) + "%");
+    }, updateProgressEvery);
 
 window.setTimeout(function () {
     $(".app").show();
     $(".preload-app").hide();
-}, 5000);
+    window.clearInterval(progressInterval);
+}, loadTime);
+
+ko.applyBindings(new app.VM());
