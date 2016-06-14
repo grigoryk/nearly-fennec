@@ -122,16 +122,16 @@ img {
 }
 
 .card-trail a {
-    float: left;
-    width: 70%;
+    width: 100%;
 }
 
 .card-trail p.overflow-url {
-    max-width: 80%;
+    max-width: 74%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     margin: 0;
+    float: left;
 }
 
 .card-trail span {
