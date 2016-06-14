@@ -83,11 +83,11 @@
                     </div>
                 </div>
 
-                <div class="cards" data-bind="foreach: union, visible: union().length > 0">
-                    <div class="title">
-                        <h4>Nearby websites you've visited:</h4>
-                    </div>
+                <div class="title" data-bind="visible: union().length > 0">
+                    <h4>Nearby websites you've visited:</h4>
+                </div>
 
+                <div class="cards" data-bind="foreach: union, visible: union().length > 0">
                     <div class="card">
                         <div class="photo">
                             <img data-bind="attr: {src: place.photo}">
