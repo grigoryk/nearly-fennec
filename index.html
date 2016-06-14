@@ -105,16 +105,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-trail">
-                        <div class="items">
-                            <h4><strong>Pages visited:</strong></h4>
-                            <div data-bind="foreach: _.first(items, 3)">
-                                <div class="visited">
-                                    <a data-bind="attr: {href: url}" target="_blank">
-                                        <p class="overflow-url" data-bind="text: displayTitle"></p>
-                                    </a>
-                                    <span data-bind="text: latestVisitFromNow"></span>
-                                </div>
+                    <div class="card-trails" data-bind="foreach: _.first(items, 3)">
+                        <div class="card-trail">
+                            <div class="visited">
+                                <a data-bind="attr: {href: url}" target="_blank">
+                                    <p class="overflow-url" data-bind="text: displayTitle"></p>
+                                </a>
+                                <span data-bind="text: latestVisitFromNow"></span>
                             </div>
                         </div>
                     </div>
