@@ -101,12 +101,12 @@ img {
 }
 
 .photo {
-    width: 31%;
+    width: 33%;
     height: 180px;
     border-radius: 0 6px 6px 0;
     float: right;
-/*    position: absolute;
-*/    overflow: hidden;
+/*  position: absolute;*/ 
+    overflow: hidden;
     right: 0;
 /*    z-index: 1;
     transition: width 0.5s;*/
