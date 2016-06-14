@@ -88,6 +88,11 @@ app.VM = function() {
         expandPhoto: function (obj) {
             obj.place.photoExpanded(!obj.place.photoExpanded());
             ga('send', 'event', 'Photo', 'expand');
+        },
+
+        getRecommendations: function () {
+            self.getRecommendations();
+            ga('send', 'event', 'Recommendations', 'shuffle');
         }
     }
 
