@@ -36,6 +36,10 @@
             this.ratingDisplay = ko.computed(function () {
                 return self.rating() + "/" + self.ratingMax() + " (" + self.ratingsCount() + " ratings)";
             });
+
+            this.mapUrl = ko.computed(function () {
+                return "http://maps.apple.com/?q=" + self.vicinity();
+            });
         },
 
         Coordinates: function (data) {

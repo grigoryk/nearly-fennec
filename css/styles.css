@@ -92,7 +92,15 @@ h1 {
     bottom: 0px;
 }
 
+<<<<<<< HEAD
 /*.keep-searching {
+=======
+.shuffle {
+    margin: 20px;
+}
+
+.keep-searching {
+>>>>>>> origin/master
     margin-left: 5px;
 }*/
 
@@ -136,7 +144,7 @@ h1 {
 }
 
 .info {
-    width: 300px;
+    width: 67%;
     max-height: 180px;
     padding: 20px;
     color: #363B40;
@@ -159,6 +167,11 @@ h1 {
 .address {
     font-size: 14px;
     color: #777777;
+    line-height: 14px;
+}
+
+.notes {
+    line-height: 16px;
 }
 
 .visited {

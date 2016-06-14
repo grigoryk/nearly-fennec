@@ -103,7 +103,9 @@
                             <strong data-bind="text: place.name"></strong>
                             <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
                         </div>
-                        <div class="address" data-bind="text: place.vicinity"></div>
+                        <div class="address">
+                            <a data-bind="attr: {href: place.mapUrl()}, text: place.vicinity" target="_blank"></a>
+                        </div>
                         <div class="notes" data-bind="if: place.notes">
                             <span data-bind="text: place.notes"></span>
                         </div>
@@ -135,7 +137,9 @@
                     <strong data-bind="text: place.name"></strong>
                     <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
                 </div>
-                <div class="address" data-bind="text: place.vicinity"></div>
+                <div class="address">
+                    <a data-bind="attr: {href: place.mapUrl()}, text: place.vicinity" target="_blank"></a>
+                </div>
                 <div class="rating">
                     <span data-bind="text: place.ratingDisplay"></span>
                 </div>
@@ -144,6 +148,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="shuffle">
+        <button class="btn btn-primary" data-bind="click: getRecommendations">Shuffle</button>
     </div>
 
     <div data-bind="if: isLoggedIn()">

@@ -122,7 +122,7 @@ var DUMMY_RECOMMENDATIONS = [
             ratingsCount: 116,
             vicinity: "10A Strathearn Pl, Paddington, London W2 2NH",
             photo: "https://irs1.4sqi.net/img/general/width960/29600398_q2V2bMDoVWSkXgWw8bTWwcLfCQIjp15TE0jkaBNlfEg.jpg",
-            notes: "W19th-century pub with great selection of Fullers and decorated wallpaper."
+            notes: "W19th-century pub with great selection of Fullers and wallpaper."
         },
         items: []
     },
