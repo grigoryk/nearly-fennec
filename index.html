@@ -118,9 +118,7 @@
                 </div>
 
                 <div class="union-details">
-                    <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
+                    <button class="btn btn-small btn-primary" style="width: 100%; height: 48px;" data-bind="click: uiActions.nearbySearch">Look again</button>
                 </div>
             </div>
         </div>
@@ -153,7 +151,11 @@
         </div>
 
         <div class="union-details">
-            <button class="btn btn-primary" data-bind="click: uiActions.getRecommendations">Shuffle</button>
+            <button class="btn btn-small btn-primary" style="width: 100%; height: 48px;" data-bind="click: uiActions.getRecommendations">Shuffle</button>
+            <div style="margin: 10px">
+                <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
+            </div>
         </div>
 
         <div data-bind="if: isLoggedIn()">

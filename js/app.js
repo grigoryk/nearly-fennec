@@ -244,7 +244,7 @@ app.VM = function() {
                 place: new app.models.Place(rec.place),
                 items: rec.items
             };
-        })), 2));
+        })), 3));
     };
 
     self.getCurrentLocation = function (callback) {
