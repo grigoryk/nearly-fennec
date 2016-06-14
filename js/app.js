@@ -31,6 +31,8 @@ app.VM = function() {
             var email = self.email(),
                 password = self.password();
 
+            ga('send', 'event', 'Auth', 'login', 'start');
+
             self.loginError("");
             self.isLoggingIn(true);
 
@@ -41,8 +43,11 @@ app.VM = function() {
                     window.localStorage["password"] = password;
 
                     self.isLoggedIn(true);
+
+                    ga('send', 'event', 'Auth', 'login', 'success');
                 } else {
                     self.loginError(result.error.message);
+                    ga('send', 'event', 'Auth', 'login', 'fail');
                 }
             });
         },
@@ -54,6 +59,7 @@ app.VM = function() {
             self.email(undefined);
             self.password(undefined);
             self.isLoggedIn(false);
+            ga('send', 'event', 'Auth', 'logout');
         },
 
         clearAll: function() {
@@ -61,22 +67,27 @@ app.VM = function() {
             self.email(undefined);
             self.password(undefined);
             self.isLoggedIn(false);
+            ga('send', 'event', 'Debug', 'clearAll');
         },
 
         nearbySearch: function () {
+            ga('send', 'event', 'Nearby', 'search');
             self.isLoadingNearby(true);
             self.getCurrentLocation(function (position) {
                 self.getPlacesNearPosition(position);
             });
             document.body.scrollTop = document.documentElement.scrollTop = 0;
+
         },
 
         fetchHistory: function () {
             self.fetchHistory(self.email(), self.password());
+            ga('send', 'event', 'History', 'sync');
         },
 
         expandPhoto: function (obj) {
             obj.place.photoExpanded(!obj.place.photoExpanded());
+            ga('send', 'event', 'Photo', 'expand');
         }
     }
 
@@ -290,9 +301,14 @@ if (window.localStorage["history"]) {
         $(".preload-app").hide();
         window.clearInterval(progressInterval);
     }, loadTime);
+
+    ga('send', 'event', 'Load', 'withHistoryCache');
+
 } else {
     $(".app").show();
     $(".preload-app").hide();
+
+    ga('send', 'event', 'Load', 'noHistoryCache');
 }
 
 ko.applyBindings(new app.VM());
