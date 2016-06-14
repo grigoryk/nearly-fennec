@@ -291,23 +291,12 @@ app.VM = function() {
     self.init();
 }
 
-var progress = 0,
-    loadTime = 7000,
-    updateProgressEvery = 500,
-    progressInterval;
+var loadTime = 6000;
 
 if (window.localStorage["history"]) {
-    progressInterval = window.setInterval(function () {
-        progress = progress + updateProgressEvery;
-        console.log(progress);
-
-        $(".load-progress").html(Math.round((progress/loadTime) * 100) + "%");
-    }, updateProgressEvery);
-
     window.setTimeout(function () {
         $(".app").show();
         $(".preload-app").hide();
-        window.clearInterval(progressInterval);
     }, loadTime);
 
     ga('send', 'event', 'Load', 'withHistoryCache');
