@@ -135,7 +135,9 @@
                     <strong data-bind="text: place.name"></strong>
                     <!--<a data-bind="attr: {href: place.website}, text: place.name" target="_blank"></a>-->
                 </div>
-                <div class="address" data-bind="text: place.vicinity"></div>
+                <div class="address">
+                    <a data-bind="attr: {href: place.mapUrl()}, text: place.vicinity" target="_blank"></a>
+                </div>
                 <div class="rating">
                     <span data-bind="text: place.ratingDisplay"></span>
                 </div>
