@@ -80,11 +80,9 @@
                 <div class="union-details">
                     <div class="no-nearby" data-bind="ifnot: union().length">
                         <p>Nothing matched your browsing history :(</p>
-                        <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
-                        <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
                     </div>
                 </div>
+
                 <div class="title">
                     <h4>Sites nearby that you've visited</h4>
                 </div>
@@ -120,7 +118,9 @@
                 </div>
 
                 <div class="union-details">
-                    <button class="btn btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>
+                    <button class="btn btn-small btn-primary" data-bind="click: uiActions.nearbySearch">Look again</button>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-small btn-default" data-bind="click: uiActions.fetchHistory">Sync history</button>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-small btn-default" data-bind="click: uiActions.logout">Logout</button>
                 </div>
             </div>
         </div>

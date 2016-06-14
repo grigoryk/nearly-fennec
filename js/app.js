@@ -265,7 +265,8 @@ app.VM = function() {
         self.getCurrentLocation(function (position) {
             self.getPlacesNearPosition(position);
         });
-        self.loadCachedHistory();
+
+        window.setTimeout(self.loadCachedHistory, 0);
     };
 
     self.init();
