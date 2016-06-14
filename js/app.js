@@ -1,7 +1,7 @@
 app.VM = function() {
     var self = this;
 
-    self.historyLimit = 20000;
+    self.historyLimit = 15000;
 
     self.isLoggedIn = ko.observable(false);
     self.isLoggingIn = ko.observable(false);
@@ -89,7 +89,7 @@ app.VM = function() {
     });
 
     self.union = ko.computed(function() {
-        let places = {};
+        var places = {};
 
         _.each(self.places(), function(place) {
             _.each(self.historyItems(), function(item) {
@@ -148,7 +148,7 @@ app.VM = function() {
         app.services.googlePlaces.nearbySearch(
             position.coords.latitude, position.coords.longitude,
             function(results, status) {
-                let places = [];
+                var places = [];
                 _.each(results, function(res) {
                     var place = app.services.kvCache.get(res.place_id);
                     if (place !== undefined) {
@@ -212,7 +212,7 @@ app.VM = function() {
         app.services.kvCache.set("history", processed);
 
         self.historyItems([]);
-        let ls = [];
+        var ls = [];
         _.each(processed, function(p) {
             ls.push(new app.models.HistoryItem(p));
         });
@@ -275,7 +275,9 @@ app.VM = function() {
 var progress = 0,
     loadTime = 7000,
     updateProgressEvery = 500,
+    progressInterval;
 
+if (window.localStorage["history"]) {
     progressInterval = window.setInterval(function () {
         progress = progress + updateProgressEvery;
         console.log(progress);
@@ -283,10 +285,14 @@ var progress = 0,
         $(".load-progress").html(Math.round((progress/loadTime) * 100) + "%");
     }, updateProgressEvery);
 
-window.setTimeout(function () {
+    window.setTimeout(function () {
+        $(".app").show();
+        $(".preload-app").hide();
+        window.clearInterval(progressInterval);
+    }, loadTime);
+} else {
     $(".app").show();
     $(".preload-app").hide();
-    window.clearInterval(progressInterval);
-}, loadTime);
+}
 
 ko.applyBindings(new app.VM());
