@@ -68,6 +68,7 @@ app.VM = function() {
             self.getCurrentLocation(function (position) {
                 self.getPlacesNearPosition(position);
             });
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
         },
 
         fetchHistory: function () {
@@ -251,23 +252,28 @@ app.VM = function() {
             return;
         }
 
-        _.each(_.first(cachedHistory, self.historyLimit), function (p) {
-            self.historyItems.push(new app.models.HistoryItem(p));
-        });
+        self.historyItems(_.map(_.first(cachedHistory, self.historyLimit), function (p) {
+            return new app.models.HistoryItem(p);
+        }));
     };
 
     self.init = function () {
         app.services.googlePlaces.init(document.getElementById("map"));
 
         self.setIsLoggedIn();
+        self.getRecommendations();
         self.getCurrentLocation(function (position) {
             self.getPlacesNearPosition(position);
         });
         self.loadCachedHistory();
-        self.getRecommendations();
     };
 
     self.init();
 }
 
 ko.applyBindings(new app.VM());
+
+window.setTimeout(function () {
+    $(".app").show();
+    $(".preload-app").hide();
+}, 5000);
